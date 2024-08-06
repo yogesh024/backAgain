@@ -38,12 +38,13 @@ mongoose.connection.on("disconnected", () => {
 });
 
 const app = express();
+app.use(cors({
+    origin: "http://localhost:5173", // your frontend domain
+     credentials: true
+  }));
 
 app.use(express.json());
-app.use(cors({
-    origin: process.env.FRONT, // your frontend domain
-    // credentials: true
-  }));
+
 app.use(cookieParser());
 
 app.use(fileUpload({
